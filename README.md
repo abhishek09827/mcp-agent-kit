@@ -3,6 +3,17 @@
 `mcp-agent-kit` is an enterprise-grade scaffolding kit and runtime foundation that enables developers to build, validate, and ship a fully compliant, production-ready Model Context Protocol (MCP) server with Agent-to-Agent (A2A) protocol support and portable Agent Skill (`SKILL.md`) packaging in under 30 minutes. Built entirely with the Python standard library for zero runtime dependencies in the protocol core, it enforces strict stateless MCP specification compliance (version 2026-07-28), deterministic resource listing, schema design validation, dual-era negotiation, and automated tool-to-skill card mapping.
 
 ---
+my_agent — mcp-agent-kit
+
+## mcp-agent-kit
+
+Build the server. Ship the agent.
+
+`github.com/abhishek09827/mcp-agent-kit`
+
+0.0 / 37.0s
+[mcp-agent-kit — developer screencast.md](https://github.com/user-attachments/files/33306308/mcp-agent-kit.developer.screencast.md)
+
 
 ## Quick Start (5 Lines)
 
