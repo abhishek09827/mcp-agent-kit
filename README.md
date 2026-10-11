@@ -503,7 +503,3 @@ If a tool violates schema rules (e.g. missing annotations or improper descriptio
 - [Portable Agent Skill Specification](https://docs.anthropic.com/en/docs/agents-and-tools)
 
 ---
-
-## License
-
-MIT © [Abhishek Kaushik](https://github.com/abhishekk09827)
