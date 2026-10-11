@@ -5,7 +5,14 @@ Zero runtime dependencies (stdlib only).
 """
 
 import sys
-from mcp_agent_kit.server import MCPServer
+from pathlib import Path
+
+try:
+    from mcp_agent_kit.server import MCPServer
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from mcp_agent_kit.server import MCPServer
+
 from tools.example import TOOL_DEFINITION
 
 

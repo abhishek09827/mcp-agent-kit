@@ -11,7 +11,14 @@ Checks:
 """
 
 import sys
-from mcp_agent_kit.validator import ComplianceValidator
+from pathlib import Path
+
+try:
+    from mcp_agent_kit.validator import ComplianceValidator
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from mcp_agent_kit.validator import ComplianceValidator
+
 from server import create_server
 
 

@@ -4,8 +4,16 @@ Dual-Era Probe client tests for local MCP agent.
 Validates modern negotiation, tools listing, and execution.
 """
 
+import sys
 import unittest
-from mcp_agent_kit.client import DualEraMCPClient
+from pathlib import Path
+
+try:
+    from mcp_agent_kit.client import DualEraMCPClient
+except ImportError:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from mcp_agent_kit.client import DualEraMCPClient
+
 from server import create_server
 
 

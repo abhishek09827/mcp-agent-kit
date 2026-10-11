@@ -125,7 +125,17 @@ Pure Python standard library with zero runtime dependencies.
 """
 
 import sys
-from mcp_agent_kit.server import MCPServer
+from pathlib import Path
+
+try:
+    from mcp_agent_kit.server import MCPServer
+except ImportError:
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "mcp_agent_kit").exists():
+            sys.path.insert(0, str(parent))
+            break
+    from mcp_agent_kit.server import MCPServer
+
 from tools.example import TOOL_DEFINITION
 
 
@@ -251,7 +261,17 @@ Runs all required MCP, A2A, and SKILL.md checks.
 """
 
 import sys
-from mcp_agent_kit.validator import ComplianceValidator
+from pathlib import Path
+
+try:
+    from mcp_agent_kit.validator import ComplianceValidator
+except ImportError:
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "mcp_agent_kit").exists():
+            sys.path.insert(0, str(parent))
+            break
+    from mcp_agent_kit.validator import ComplianceValidator
+
 from server import create_server
 
 def main():
@@ -276,7 +296,18 @@ Tests modern discovery, legacy boundary, and tool invocation.
 """
 
 import unittest
-from mcp_agent_kit.client import DualEraMCPClient
+import sys
+from pathlib import Path
+
+try:
+    from mcp_agent_kit.client import DualEraMCPClient
+except ImportError:
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "mcp_agent_kit").exists():
+            sys.path.insert(0, str(parent))
+            break
+    from mcp_agent_kit.client import DualEraMCPClient
+
 from server import create_server
 
 
