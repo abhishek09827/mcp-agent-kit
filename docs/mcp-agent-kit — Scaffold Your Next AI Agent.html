@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mcp-agent-kit — Scaffold Your Next AI Agent</title>
+<meta name="description" content="Build a structured foundation for AI agents with MCP server scaffolding, A2A support, and portable Agent Skills.">
+<meta property="og:title" content="mcp-agent-kit — Scaffold Your Next AI Agent">
+<meta property="og:description" content="Build a structured foundation for AI agents with MCP server scaffolding, A2A support, and portable Agent Skills.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='1200' height='630' fill='%23080A12'/%3E%3Cpath d='M600 150l130 75v150l-130 75-130-75V225z' fill='none' stroke='%2372F5E5' stroke-width='6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23080A12'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%2372F5E5' stroke-width='2'/%3E%3Cpath d='M16 5v22M7 10l18 12' stroke='%23A78BFA' stroke-width='1.5'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#080A12;--surf:#111522;--tx:#F3F5FC;--tx2:#A1A9BC;--cy:#72F5E5;--vi:#A78BFA;--am:#FFBE76;--line:#252B3F;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Inter,sans-serif;overflow-x:hidden}
+.mono,code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+a{color:var(--cy)}
+:focus-visible{outline:2px solid var(--cy);outline-offset:3px;border-radius:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--cy);color:#001;padding:8px 12px;z-index:99}.skip:focus{left:8px}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(16px,4vw,48px);background:rgba(8,10,18,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:10px;align-items:center;color:var(--tx);text-decoration:none;font-weight:600;letter-spacing:-.01em}
+.links{display:flex;gap:26px;align-items:center}.links a{color:var(--tx2);text-decoration:none;font-size:15px}.links a:hover{color:var(--tx)}
+.btn{display:inline-block;padding:12px 20px;border-radius:4px;font-weight:600;text-decoration:none;border:1px solid var(--cy);transition:transform .15s,background .15s}
+.btn.p{background:var(--cy);color:#04110F}.btn.p:hover{background:#9bfaee}.btn.s{color:var(--tx);border-color:var(--line)}.btn.s:hover{border-color:var(--vi)}.btn:active{transform:translateY(1px)}
+#menu{display:none;background:none;border:1px solid var(--line);color:var(--tx);padding:8px 12px;border-radius:4px}
+main section{padding:clamp(72px,11vw,150px) clamp(16px,6vw,96px);max-width:1280px;margin:0 auto}
+h1{font-size:clamp(2.6rem,7vw,5.6rem);line-height:1;letter-spacing:-.045em;margin:0 0 24px;font-weight:700}
+h2{font-size:clamp(1.9rem,4.2vw,3.2rem);line-height:1.08;letter-spacing:-.035em;margin:0 0 20px;font-weight:650;max-width:18ch}
+h3{margin:0 0 6px;font-size:1.1rem}
+p{color:var(--tx2);max-width:60ch}
+#hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;max-width:none;padding-top:110px;overflow:hidden}
+#hero .copy{position:relative;z-index:2;max-width:640px}
+#hero p{font-size:1.15rem}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+#c3d{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+#hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--bg) 8%,rgba(8,10,18,.55) 48%,transparent 75%);pointer-events:none}
+.fallback{display:none;position:absolute;right:6%;top:22%;width:min(46vw,420px);z-index:1}
+.nogl .fallback{display:block}
+/* problem */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.stage{position:relative;height:340px;border:1px solid var(--line);background:var(--surf);border-radius:6px;overflow:hidden}
+.file{position:absolute;font:12px ui-monospace,monospace;padding:5px 9px;border:1px solid var(--line);background:var(--bg);color:var(--tx2);border-radius:3px;transition:all 1.4s cubic-bezier(.2,.7,.2,1);white-space:nowrap}
+.file.k{border-color:var(--cy);color:var(--cy)}
+.stage.tidy .file{transform:none!important}
+.stage .cap{position:absolute;bottom:10px;left:14px;font-size:13px;color:var(--tx2)}
+/* architecture */
+.arch{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:start}
+.arch svg{width:100%;height:auto;background:var(--surf);border:1px solid var(--line);border-radius:6px}
+.node{cursor:pointer}.node rect{fill:#0c1020;stroke:var(--line);stroke-width:1.5;transition:stroke .2s}
+.node text{fill:var(--tx);font:600 15px system-ui}.node .sub{fill:var(--tx2);font:12px system-ui;font-weight:400}
+.node:focus-visible rect,.node.on rect{stroke:var(--cy)}.node.on.v rect{stroke:var(--vi)}.node.on.a rect{stroke:var(--am)}
+.edge{stroke:var(--line);stroke-width:1.5;fill:none;transition:stroke .2s}.edge.on{stroke:var(--cy);stroke-dasharray:6 5;animation:d 1.4s linear infinite}
+@keyframes d{to{stroke-dashoffset:-22}}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.ctl button{background:none;border:1px solid var(--line);color:var(--tx);padding:8px 12px;border-radius:4px;font:inherit;font-size:14px;cursor:pointer}
+.ctl button[aria-pressed=true]{border-color:var(--cy);color:var(--cy)}
+#ann{border-left:2px solid var(--cy);padding-left:16px;min-height:150px}
+/* steps */
+.steps{display:flex;gap:0;overflow-x:auto;border-top:1px solid var(--line);margin-top:36px;scroll-snap-type:x mandatory}
+.step{flex:0 0 min(300px,80vw);padding:24px 24px 28px 0;border-right:1px solid var(--line);margin-right:24px;scroll-snap-align:start}
+.step:last-child{border:0}
+.step svg{width:84px;height:84px;margin-bottom:12px}
+.step code{display:block;color:var(--cy);font-size:13px;margin-top:8px}
+/* code */
+.win{border:1px solid var(--line);border-radius:6px;background:var(--surf);overflow:hidden}
+.tabs{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:8px 12px;font-size:13px;color:var(--tx2)}
+.cp{background:none;border:1px solid var(--line);color:var(--tx);border-radius:4px;padding:4px 10px;font:12px system-ui;cursor:pointer}.cp:hover{border-color:var(--cy)}
+pre{margin:0;padding:18px;overflow-x:auto;font-size:13.5px;line-height:1.6;color:var(--tx)}
+.k1{color:var(--vi)}.s1{color:var(--cy)}.c1{color:#7d86a0}.n1{color:var(--am)}
+/* features */
+.feat{border-top:1px solid var(--line)}
+.feat>div{display:grid;grid-template-columns:90px 1fr 1.2fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}
+.feat h3{margin:0}.feat p{margin:0}
+.tag{font-size:12px;color:var(--cy)}.tag.o{color:var(--am)}
+/* playground */
+.pg{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
+label{display:block;font-size:14px;color:var(--tx2);margin:14px 0 6px}
+input,textarea{width:100%;background:var(--surf);color:var(--tx);border:1px solid var(--line);border-radius:4px;padding:10px 12px;font:14px ui-monospace,monospace}
+input:focus,textarea:focus{outline:2px solid var(--cy);border-color:transparent}
+.out{background:var(--surf);border:1px solid var(--line);border-radius:6px;padding:18px}
+.chk{list-style:none;padding:0;margin:12px 0 0;font-size:14px}.chk li{padding:3px 0;color:var(--tx2)}.chk .ok::before{content:"✓ ";color:var(--cy)}.chk .no::before{content:"✗ ";color:var(--am)}
+.note{font-size:13px;color:var(--tx2);border-top:1px solid var(--line);margin-top:14px;padding-top:12px}
+/* start */
+.cmd{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surf);border:1px solid var(--line);border-radius:4px;padding:10px 14px;margin:8px 0;font-size:14px;overflow-x:auto}
+.cmd code{white-space:nowrap}
+ol.go{padding-left:20px}ol.go li{margin:22px 0;color:var(--tx2)}ol.go b{color:var(--tx)}
+details{border-bottom:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font-weight:600}summary::marker{color:var(--cy)}
+details p{margin:10px 0 0}
+#final{text-align:center}#final h2,#final p{margin-left:auto;margin-right:auto;max-width:22ch}#final p{max-width:44ch}
+.emb{width:150px;height:150px;margin:0 auto 28px;display:block;filter:drop-shadow(0 0 24px rgba(114,245,229,.35))}
+footer{border-top:1px solid var(--line);padding:32px clamp(16px,6vw,96px);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;color:var(--tx2);font-size:14px}
+footer a{margin-right:16px}
+@media(max-width:860px){.links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 16px 16px}.links.open{display:flex}.links a{padding:12px 0}#menu{display:block}
+.split,.arch,.pg{grid-template-columns:1fr}.feat>div{grid-template-columns:1fr;gap:8px}#hero::after{background:linear-gradient(180deg,rgba(8,10,18,.2),var(--bg) 85%)}#hero{align-items:flex-end;padding-bottom:56px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#features">Skip to content</a>
+<nav aria-label="Primary">
+  <a class="brand" href="#top"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l10 6v12l-10 6-10-6V10z" fill="none" stroke="#72F5E5" stroke-width="2"/><path d="M16 4v24M6 10l20 12" stroke="#A78BFA" stroke-width="1.5"/></svg>mcp-agent-kit</a>
+  <button id="menu" aria-expanded="false" aria-controls="links">Menu</button>
+  <div class="links" id="links"><a href="#architecture">Features</a><a href="#how">How it works</a><a href="#start">Quick start</a><a class="btn p" href="https://github.com/abhishek09827/mcp-agent-kit">GitHub</a></div>
+</nav>
+<main id="top">
+<section id="hero">
+  <canvas id="c3d" aria-hidden="true"></canvas>
+  <svg class="fallback" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 20l60 35v70l-60 35-60-35V55z" fill="none" stroke="#72F5E5" stroke-width="2"/><path d="M100 20v140M40 55l120 70M160 55L40 125" stroke="#A78BFA" stroke-width="1"/><rect x="14" y="140" width="28" height="28" fill="none" stroke="#FFBE76"/><rect x="160" y="30" width="24" height="24" fill="none" stroke="#72F5E5"/></svg>
+  <div class="copy">
+    <h1>Your next AI agent starts here.</h1>
+    <p>Scaffold a production-ready MCP server with A2A support and portable Agent Skills. Start with a structured foundation. Build what makes your agent yours.</p>
+    <div class="cta"><a class="btn p" href="https://github.com/abhishek09827/mcp-agent-kit">Explore on GitHub</a><a class="btn s" href="#how">See how it works</a></div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="split">
+    <div>
+      <h2>Skip the blank-page problem.</h2>
+      <p>Standing up an interoperable agent server means boilerplate: protocol envelopes, an agent card, a skill file, packaging and validation. mcp-agent-kit generates that starting structure so your first hour goes to your own tools.</p>
+      <p>It doesn’t remove integration work. Your tools, your logic and your client setup are still yours.</p>
+      <button class="cp" id="tidy" aria-pressed="false" style="margin-top:8px;padding:8px 14px">Organize the files</button>
+    </div>
+    <div class="stage" id="stage" role="img" aria-label="Loose files rearranging into a structured project tree"><span class="cap" id="cap">Before: loose files</span></div>
+  </div>
+</section>
+
+<section id="architecture">
+  <h2>One foundation. Three building blocks.</h2>
+  <p>Select a block to see what it is and what it connects to. Validation and tests sit underneath all three.</p>
+  <div class="arch">
+    <svg viewBox="0 0 520 380" role="group" aria-label="Architecture diagram">
+      <path class="edge" id="e-mv" d="M170 110 H350"/><path class="edge" id="e-ms" d="M110 150 V230 H160"/><path class="edge" id="e-as" d="M410 150 V230 H360"/>
+      <g class="node" id="n-mcp" tabindex="0" role="button" aria-label="MCP server"><rect x="40" y="60" width="140" height="90" rx="5"/><text x="58" y="100">MCP server</text><text class="sub" x="58" y="124">tools / resources / prompts</text></g>
+      <g class="node v" id="n-a2a" tabindex="0" role="button" aria-label="A2A support"><rect x="340" y="60" width="140" height="90" rx="5"/><text x="358" y="100">A2A support</text><text class="sub" x="358" y="124">agent card + tasks</text></g>
+      <g class="node a" id="n-skill" tabindex="0" role="button" aria-label="Agent Skills"><rect x="160" y="200" width="200" height="70" rx="5"/><text x="180" y="236">Agent Skill</text><text class="sub" x="180" y="256">portable SKILL.md</text></g>
+      <rect x="40" y="310" width="440" height="40" rx="5" fill="none" stroke="#252B3F" stroke-dasharray="4 4"/><text x="60" y="335" fill="#A1A9BC" font-size="13" font-family="system-ui">validate.py + client_test.py + unit tests</text>
+    </svg>
+    <div>
+      <div class="ctl" role="group" aria-label="Choose a component">
+        <button data-k="mcp" aria-pressed="true">MCP server</button><button data-k="a2a" aria-pressed="false">A2A support</button><button data-k="skill" aria-pressed="false">Agent Skills</button>
+      </div>
+      <div id="ann" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <h2>From scaffold to your own agent.</h2>
+  <div class="steps" tabindex="0" aria-label="Four steps, scrollable">
+    <div class="step"><svg viewBox="0 0 84 84" aria-hidden="true"><rect x="14" y="14" width="56" height="56" fill="none" stroke="#72F5E5" stroke-width="2"/><path d="M14 34h56" stroke="#A78BFA"/></svg><h3>Configure your project</h3><p>Pick a snake_case name, a description and a base URL.</p><code>create-mcp-agent my_agent</code></div>
+    <div class="step"><svg viewBox="0 0 84 84" aria-hidden="true"><path d="M42 10l30 17v30L42 74 12 57V27z" fill="none" stroke="#72F5E5" stroke-width="2"/><path d="M42 10v64" stroke="#A78BFA"/></svg><h3>Generate the scaffold</h3><p>The CLI writes server, tools, A2A card, SKILL.md and tests.</p><code>cd my_agent</code></div>
+    <div class="step"><svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="28" fill="none" stroke="#72F5E5" stroke-width="2"/><path d="M30 42l9 9 17-18" fill="none" stroke="#FFBE76" stroke-width="3"/></svg><h3>Validate the implementation</h3><p>Six compliance checks, plus a dual-era client probe test.</p><code>python validate.py</code></div>
+    <div class="step"><svg viewBox="0 0 84 84" aria-hidden="true"><rect x="12" y="44" width="28" height="28" fill="none" stroke="#72F5E5" stroke-width="2"/><rect x="44" y="12" width="28" height="28" fill="none" stroke="#A78BFA" stroke-width="2" stroke-dasharray="4 3"/></svg><h3>Extend it with your own tools</h3><p>Add a file under tools/, register it in server.py, re-validate.</p><code>python server.py</code></div>
+  </div>
+</section>
+
+<section id="code">
+  <div class="split">
+    <div><h2>Start with a foundation. Stay in control.</h2><p>This is the tool definition shape the scaffold ships with (<code>tools/example.py</code>), trimmed for display. Your own tools follow the same pattern and are registered in <code>server.py</code>.</p><p class="tag o">Illustrative excerpt, not program output.</p></div>
+    <div class="win"><div class="tabs"><span class="mono">tools/example.py</span><button class="cp" data-copy="#codeblock">Copy</button></div>
+<pre id="codeblock"><span class="k1">def</span> calculate_metrics(arguments):
+    values = arguments.get(<span class="s1">"values"</span>, [])
+    ...
+
+TOOL_DEFINITION = {
+    <span class="s1">"name"</span>: <span class="s1">"calculate_metrics"</span>,
+    <span class="s1">"description"</span>: <span class="s1">"Use when analyzing numerical series or computing aggregate metrics. Do not use for unstructured text parsing."</span>,
+    <span class="s1">"inputSchema"</span>: {
+        <span class="s1">"type"</span>: <span class="s1">"object"</span>,
+        <span class="s1">"properties"</span>: {
+            <span class="s1">"metric_type"</span>: {<span class="s1">"type"</span>: <span class="s1">"string"</span>, <span class="s1">"enum"</span>: [<span class="s1">"mean"</span>, <span class="s1">"sum"</span>, <span class="s1">"max"</span>, <span class="s1">"min"</span>]},
+            <span class="s1">"values"</span>: {<span class="s1">"type"</span>: <span class="s1">"array"</span>, <span class="s1">"items"</span>: {<span class="s1">"type"</span>: <span class="s1">"number"</span>}},
+        },
+        <span class="s1">"required"</span>: [<span class="s1">"values"</span>],
+    },
+    <span class="s1">"annotations"</span>: {<span class="s1">"readOnlyHint"</span>: <span class="n1">True</span>, <span class="s1">"destructiveHint"</span>: <span class="n1">False</span>},
+    <span class="s1">"handler"</span>: calculate_metrics,
+}</pre></div>
+  </div>
+</section>
+
+<section id="features">
+  <h2>What the repository implements today.</h2>
+  <div class="feat">
+    <div><span class="tag">Implemented</span><h3>Project structure</h3><p>Generates tools/, a2a/, server.py, validate.py, client_test.py, SKILL.md and a README.</p></div>
+    <div><span class="tag">Implemented</span><h3>Stateless MCP server</h3><p>Targets MCP 2026-07-28 over stdio: server/discover, tools, resources and prompts, each request carrying its own _meta, with sorted list results. Standard library only.</p></div>
+    <div><span class="tag">Implemented</span><h3>A2A agent card and tasks</h3><p>Builds agent.json from registered tools and serves it with a task lifecycle (submitted, working, completed, failed, input_required).</p></div>
+    <div><span class="tag">Implemented</span><h3>Portable SKILL.md</h3><p>Frontmatter checks: name matches directory, description 20–1024 characters in “Use when X. Do not use for Y.” form.</p></div>
+    <div><span class="tag">Implemented</span><h3>Validation and tests</h3><p>validate.py runs six checks; the repository ships 20 unit tests under tests/.</p></div>
+    <div><span class="tag o">Not included</span><h3>Auth, database, hosting</h3><p>The README lists these as out of scope: add a bearer-token validator or persistent task store yourself. Client compatibility beyond the documented Claude Desktop and Claude Code steps isn’t claimed.</p></div>
+  </div>
+</section>
+
+<section id="playground">
+  <h2>Preview a scaffold.</h2>
+  <p>A browser preview of what <code>create-mcp-agent</code> would write for your inputs, using the same name and description rules as the CLI. It does not generate files; the official CLI does.</p>
+  <div class="pg">
+    <div>
+      <label for="pn">Agent name (snake_case)</label><input id="pn" value="my_agent" autocomplete="off" spellcheck="false">
+      <label for="pd">Description (--desc)</label><textarea id="pd" rows="4" spellcheck="false">Use when computing numerical metrics. Do not use for text parsing.</textarea>
+      <label for="pu">Base URL (--url)</label><input id="pu" value="http://localhost:8000" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="out"><div class="mono" id="cmdline" style="font-size:13px;color:var(--cy)"></div><pre id="tree" style="padding:12px 0 0"></pre><ul class="chk" id="chk"></ul>
+    <p class="note">Checks mirror the CLI’s name rule and description pattern. Whether a generated project passes all six validate.py checks is only known by running it. Generated server files import mcp_agent_kit, so it must be installed.</p></div>
+  </div>
+</section>
+
+<section id="start">
+  <h2>Your next commit starts here.</h2>
+  <div class="split" style="align-items:start">
+    <ol class="go">
+      <li><b>Open the repository.</b> Python 3.10 or newer is required.</li>
+      <li><b>Install and scaffold.</b> The README documents installing from PyPI and running the generator.</li>
+      <li><b>Run validation.</b> Six compliance checks, then the probe client test.</li>
+      <li><b>Run the repo’s tests.</b> From a clone of the repository.</li>
+      <li><b>Extend the project.</b> Add tools under tools/ and register them in server.py.</li>
+    </ol>
+    <div id="cmds"></div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>Questions.</h2>
+  <details><summary>What is mcp-agent-kit?</summary><p>A scaffolding kit and runtime foundation for building an MCP server with A2A support and portable Agent Skill packaging. It is an early release (0.1.0, Beta).</p></details>
+  <details><summary>What does it generate?</summary><p>tools/example.py, server.py, a2a/agent.json, a2a/server.py, SKILL.md, validate.py, client_test.py and README.md.</p></details>
+  <details><summary>How do MCP and A2A support work?</summary><p>The MCP server speaks stateless JSON-RPC over stdio. The A2A server is a standard-library HTTP server exposing /.well-known/agent.json and task endpoints (/a2a/tasks/send, /a2a/tasks/{id}); the agent card is generated from your registered tools.</p></details>
+  <details><summary>What is the role of SKILL.md?</summary><p>It packages the agent’s purpose and tool index as a portable skill file. The README shows copying it into <code>~/.claude/skills</code> or <code>.claude/skills</code> for Claude Code.</p></details>
+  <details><summary>Which Python version is required?</summary><p>Python 3.10 or newer, per pyproject.toml. The protocol core has no runtime dependencies; Flask is an optional extra.</p></details>
+  <details><summary>How do I validate a generated project?</summary><p>Run <code>python validate.py</code> inside it, and <code>python client_test.py</code> for the probe client tests.</p></details>
+  <details><summary>Can I customize the scaffold?</summary><p>Yes. The output is plain Python files you own. Add tools, change the agent card, edit SKILL.md, then re-run validation.</p></details>
+</section>
+
+<section id="final">
+  <svg class="emb" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 20l66 38v84l-66 38-66-38V58z" fill="rgba(114,245,229,.06)" stroke="#72F5E5" stroke-width="2"/><path d="M100 20v160M34 58l132 84M166 58L34 142" stroke="#A78BFA" stroke-width="1.2"/><circle cx="100" cy="100" r="14" fill="#FFBE76"/></svg>
+  <h2>Build the foundation. Create the intelligence.</h2>
+  <p>Open source. Developer controlled. Ready to extend.</p>
+  <div class="cta" style="justify-content:center"><a class="btn p" href="https://github.com/abhishek09827/mcp-agent-kit">View the project on GitHub</a></div>
+  <p style="margin-top:18px"><a href="https://github.com/abhishek09827/mcp-agent-kit#readme">Read the documentation</a></p>
+</section>
+</main>
+<footer><div><a href="https://github.com/abhishek09827/mcp-agent-kit">Repository</a><a href="#architecture">Features</a><a href="#how">How it works</a><a href="#start">Quick start</a></div><div>MIT license, as declared in pyproject.toml</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* nav */
+var mb=document.getElementById('menu'),lk=document.getElementById('links');
+mb.onclick=function(){var o=lk.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
+lk.addEventListener('click',function(e){if(e.target.tagName=='A'){lk.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
+/* copy */
+function copy(t,b){var d=function(){var o=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=o},1400)};
+ if(navigator.clipboard)navigator.clipboard.writeText(t).then(d,function(){b.textContent='Copy failed'});else b.textContent='Copy failed'}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(b)copy(document.querySelector(b.dataset.copy).textContent,b);var c=e.target.closest('[data-cmd]');if(c)copy(c.dataset.cmd,c)});
+/* commands */
+var C=[['pip install mcp-agent-kit'],['create-mcp-agent my_agent'],['cd my_agent'],['python validate.py'],['python client_test.py'],['python server.py'],['git clone https://github.com/abhishek09827/mcp-agent-kit && cd mcp-agent-kit'],['python -m unittest discover -s tests -p "test_*.py" -v']];
+document.getElementById('cmds').innerHTML=C.map(function(c){return '<div class="cmd"><code>'+c[0].replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</code><button class="cp" data-cmd="'+c[0].replace(/"/g,'&quot;')+'" aria-label="Copy command">Copy</button></div>'}).join('');
+/* problem stage */
+var st=document.getElementById('stage'),names=['server.py','agent.json','SKILL.md','validate.py','example.py','client_test.py','a2a_server.py','README.md','notes.txt'],tidyPos=[[24,24],[44,56],[44,88],[24,120],[44,152],[44,184],[44,216],[24,248],[24,280]];
+var files=names.map(function(n,i){var s=document.createElement('span');s.className='file'+(i<8?' k':'');s.textContent=n;var rx=(Math.sin(i*97)*.5+.5)*70+8,ry=(Math.cos(i*53)*.5+.5)*66+8,rot=(i%5-2)*13;
+ s.style.left=tidyPos[i][0]+'px';s.style.top=tidyPos[i][1]+'px';s.dataset.t='translate('+(rx*3.2-tidyPos[i][0])+'px,'+(ry*2.6-tidyPos[i][1])+'px) rotate('+rot+'deg)';s.style.transform=s.dataset.t;st.appendChild(s);return s});
+var tb=document.getElementById('tidy'),cap=document.getElementById('cap');
+function setTidy(on){st.classList.toggle('tidy',on);tb.setAttribute('aria-pressed',on);tb.textContent=on?'Scatter again':'Organize the files';cap.textContent=on?'After: a structured project':'Before: loose files';files.forEach(function(f){f.style.transform=on?'none':f.dataset.t})}
+tb.onclick=function(){setTidy(!st.classList.contains('tidy'))};
+if('IntersectionObserver' in window)new IntersectionObserver(function(es,o){if(es[0].isIntersecting){setTimeout(function(){setTidy(true)},500);o.disconnect()}},{threshold:.6}).observe(st);
+/* architecture */
+var A={mcp:{t:'MCP server',e:['e-mv','e-ms'],d:'The tool and protocol interface. A stateless JSON-RPC server over stdio implementing server/discover, tools, resources and prompts for MCP 2026-07-28. Each request carries its own _meta block.'},
+a2a:{t:'A2A support',e:['e-mv','e-as'],d:'The agent-to-agent layer. An HTTP server publishes /.well-known/agent.json and a task lifecycle. The agent card skills are mapped from the tools registered on the MCP server.'},
+skill:{t:'Agent Skills',e:['e-ms','e-as'],d:'A portable SKILL.md describing when to use the agent and which tools it offers, checked against a portable-core frontmatter rules. Installing it in Claude Code is a file copy, per the README.'}};
+var ids={mcp:'n-mcp',a2a:'n-a2a',skill:'n-skill'};
+function sel(k){document.querySelectorAll('.edge').forEach(function(e){e.classList.remove('on')});A[k].e.forEach(function(i){document.getElementById(i).classList.add('on')});
+ Object.keys(ids).forEach(function(j){document.getElementById(ids[j]).classList.toggle('on',j==k)});
+ document.querySelectorAll('.ctl button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.k==k)});
+ document.getElementById('ann').innerHTML='<h3>'+A[k].t+'</h3><p>'+A[k].d+'</p><p class="tag">Underneath: validate.py checks all three; it does not imply every client is supported.</p>'}
+document.querySelectorAll('.ctl button').forEach(function(b){b.onclick=function(){sel(b.dataset.k)}});
+Object.keys(ids).forEach(function(k){var n=document.getElementById(ids[k]);n.onclick=function(){sel(k)};n.onmouseenter=function(){sel(k)};n.onfocus=function(){sel(k)};n.onkeydown=function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();sel(k)}}});sel('mcp');
+/* playground */
+var pn=document.getElementById('pn'),pd=document.getElementById('pd'),pu=document.getElementById('pu');
+function pg(){var n=pn.value.trim(),d=pd.value.trim(),u=pu.value.trim()||'http://localhost:8000',okN=/^[a-z][a-z0-9_]*$/.test(n),okD=/Use when .+\. Do not use for .+\./.test(d),len=d.length>=20&&d.length<=1024;
+ var cmd='create-mcp-agent '+(n||'<name>')+(d?' --desc "'+d.replace(/"/g,'\\"')+'"':'')+(u!='http://localhost:8000'?' --url '+u:'');document.getElementById('cmdline').textContent='$ '+cmd;
+ var x=n||'my_agent';document.getElementById('tree').textContent=x+'/\n├─ SKILL.md\n├─ README.md\n├─ server.py\n├─ validate.py\n├─ client_test.py\n├─ a2a/\n│  ├─ agent.json   (url: '+u.replace(/\/$/,'')+'/a2a)\n│  └─ server.py\n└─ tools/\n   ├─ __init__.py\n   └─ example.py';
+ var L=[[okN,'Name is snake_case (lowercase letters, digits, underscores)'],[okD,okD?'Description follows “Use when X. Do not use for Y.”':'Description lacks the pattern; the CLI would prepend default text'],[len,'Description is 20–1024 characters (SKILL.md rule)'],[/^https?:\/\//.test(u),'Base URL starts with http(s)://']];
+ document.getElementById('chk').innerHTML=L.map(function(l){return '<li class="'+(l[0]?'ok':'no')+'">'+l[1]+'</li>'}).join('')}
+[pn,pd,pu].forEach(function(e){e.oninput=pg});pg();
+/* 3D */
+var cv=document.getElementById('c3d'),hero=document.getElementById('hero');
+try{
+ if(!window.THREE)throw 0;
+ var r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,1.75));
+ var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,1,.1,100),g=new THREE.Group();sc.add(g);
+ var cy=0x72F5E5,vi=0xA78BFA,am=0xFFBE76;
+ var core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.1,1),new THREE.MeshStandardMaterial({color:0x1b2440,transparent:true,opacity:.55,roughness:.2,metalness:.6,emissive:cy,emissiveIntensity:.12}));g.add(core);
+ core.add(new THREE.LineSegments(new THREE.WireframeGeometry(core.geometry),new THREE.LineBasicMaterial({color:cy,transparent:true,opacity:.5})));
+ sc.add(new THREE.AmbientLight(0x8890b0,.5));var l1=new THREE.PointLight(cy,2,20);l1.position.set(4,3,4);var l2=new THREE.PointLight(vi,2,20);l2.position.set(-4,-2,3);sc.add(l1,l2);
+ var mods=[],cols=[cy,vi,am,0xdfe4f5],geos=[new THREE.BoxGeometry(.8,.8,.8),new THREE.BoxGeometry(1,.5,.5),new THREE.OctahedronGeometry(.5),new THREE.BoxGeometry(.55,.55,.55)];
+ geos.forEach(function(ge,i){var m=new THREE.Mesh(ge,new THREE.MeshStandardMaterial({color:0x151b30,metalness:.8,roughness:.3,emissive:cols[i],emissiveIntensity:.08}));m.add(new THREE.LineSegments(new THREE.EdgesGeometry(ge),new THREE.LineBasicMaterial({color:cols[i]})));
+  var a=i/4*Math.PI*2;m.userData={a:a,rad:2.5+i%2*.5,y:(i-1.5)*.45};g.add(m);mods.push(m);
+  var ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]),new THREE.LineBasicMaterial({color:cols[i],transparent:true,opacity:.6}));m.userData.ln=ln;g.add(ln)});
+ var N=220,pp=new Float32Array(N*3);for(var i=0;i<N;i++){var t=Math.random()*6.28,u=Math.random()*2-1,rr=2+Math.random()*3.2;pp[i*3]=Math.cos(t)*Math.sqrt(1-u*u)*rr;pp[i*3+1]=u*rr*.7;pp[i*3+2]=Math.sin(t)*Math.sqrt(1-u*u)*rr}
+ var pg_=new THREE.BufferGeometry();pg_.setAttribute('position',new THREE.BufferAttribute(pp,3));var pts=new THREE.Points(pg_,new THREE.PointsMaterial({color:0xA1A9BC,size:.03,transparent:true,opacity:.7}));g.add(pts);
+ var mx=0,my=0,vis=true,t0=0;
+ addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+ function size(){var w=hero.clientWidth,h=hero.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.position.set(w>860?2.2:0,0,w>860?8.2:11);cam.updateProjectionMatrix()}
+ addEventListener('resize',size);size();
+ function frame(t){var s=Math.min(scrollY/innerHeight,1.5);t*=.001;
+  g.rotation.y=(RM?0:t*.08)+s*1.1+mx*.4;g.rotation.x=my*.25+s*.2;core.rotation.y=RM?0:t*.15;
+  mods.forEach(function(m,i){var d=m.userData,a=d.a+(RM?0:t*.2),rad=d.rad+s*.8;m.position.set(Math.cos(a)*rad,d.y+(RM?0:Math.sin(t+i)*.12),Math.sin(a)*rad);m.rotation.x=a;m.rotation.y=a*.7;
+   var p=d.ln.geometry.attributes.position;p.setXYZ(1,m.position.x,m.position.y,m.position.z);p.needsUpdate=true});
+  r.render(sc,cam)}
+ function loop(t){if(vis)frame(t);requestAnimationFrame(loop)}
+ frame(0);
+ if(!RM){new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(hero);requestAnimationFrame(loop);}
+ else addEventListener('scroll',function(){frame(0)},{passive:true});
+}catch(e){document.documentElement.classList.add('nogl');cv.remove()}
+})();
+</script>
+</body>
+</html>
