@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0",
+  "name": "mcp_agent_kit",
+  "description": "Use when querying or operating mcp_agent_kit agent capabilities. Do not use for unrelated external operations.",
+  "url": "http://localhost:8000/a2a",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "id": "calculate_metrics",
+      "name": "calculate_metrics",
+      "description": "Use when analyzing numerical series or computing aggregate metrics. Do not use for unstructured text parsing.",
+      "inputModes": [
+        "data",
+        "text"
+      ],
+      "outputModes": [
+        "data",
+        "text"
+      ],
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "metric_type": {
+            "type": "string",
+            "enum": [
+              "mean",
+              "sum",
+              "max",
+              "min"
+            ],
+            "description": "Aggregation function to apply",
+            "is_closed_set": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "List of numeric values to aggregate"
+          }
+        },
+        "required": [
+          "values"
+        ]
+      }
+    }
+  ],
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  }
+}
