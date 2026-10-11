@@ -1,18 +1,102 @@
-# mcp-agent-kit
+[mcp-agent-kit — developer screencast.html](https://github.com/user-attachments/files/33306334/mcp-agent-kit.developer.screencast.html)# mcp-agent-kit
 
 `mcp-agent-kit` is an enterprise-grade scaffolding kit and runtime foundation that enables developers to build, validate, and ship a fully compliant, production-ready Model Context Protocol (MCP) server with Agent-to-Agent (A2A) protocol support and portable Agent Skill (`SKILL.md`) packaging in under 30 minutes. Built entirely with the Python standard library for zero runtime dependencies in the protocol core, it enforces strict stateless MCP specification compliance (version 2026-07-28), deterministic resource listing, schema design validation, dual-era negotiation, and automated tool-to-skill card mapping.
 
 ---
-my_agent — mcp-agent-kit
+[Uploading mcp<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>mcp-agent-kit — screencast</title>
+<style>
+:root{--bg:#080A12;--sf:#111522;--ln:#252B3F;--tx:#F3F5FC;--t2:#A1A9BC;--cy:#72F5E5;--vi:#A78BFA;--am:#FFBE76;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:#030409;color:var(--tx);font:16px system-ui,sans-serif;overflow:hidden}
+#wrap{position:relative;width:min(100vw,177.78vh);aspect-ratio:16/9;margin:0 auto;top:50%;transform:translateY(-50%);background:radial-gradient(120% 90% at 70% 0%,#10172c,#06080F 60%);overflow:hidden;container-type:inline-size}
+#ide{position:absolute;inset:5% 5% 9%;display:grid;grid-template-columns:19% 1fr;grid-template-rows:5% 1fr;background:var(--bg);border:1px solid var(--ln);border-radius:.8cqw;box-shadow:0 3cqw 8cqw rgba(0,0,0,.6),0 0 0 1px rgba(114,245,229,.05);overflow:hidden;font:1.3cqw/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;will-change:transform}
+#bar{grid-column:1/3;display:flex;align-items:center;gap:.6cqw;padding:0 1.2cqw;background:var(--sf);border-bottom:1px solid var(--ln);color:var(--t2);font-size:1.05cqw}
+#bar i{width:.9cqw;height:.9cqw;border-radius:50%;background:#2a3350}#bar span{margin:0 auto}
+#side{background:#0b0e1a;border-right:1px solid var(--ln);padding:1cqw 0;color:var(--t2);overflow:hidden;font-size:1.15cqw}
+#side div{padding:.1cqw 1cqw;white-space:nowrap;opacity:0}#side div.on{opacity:1}#side div.act{background:#1a2140;color:var(--tx);box-shadow:inset .2cqw 0 var(--cy)}
+#main{display:grid;grid-template-rows:60% 40%;min-height:0}
+#ed{position:relative;border-bottom:1px solid var(--ln);overflow:hidden;min-height:0}
+#tab{height:2.6cqw;display:flex;align-items:center;padding:0 1cqw;background:var(--sf);border-bottom:1px solid var(--ln);font-size:1.1cqw;color:var(--tx)}
+#code{padding:.8cqw 0;overflow:hidden;white-space:pre}
+.l{display:flex;min-height:1.65em}.l b{flex:0 0 3.2cqw;text-align:right;padding-right:1.2cqw;color:#3d4766;font-weight:400}.l.n{background:rgba(114,245,229,.06)}
+#term{background:#070910;padding:.8cqw 1.2cqw;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;white-space:pre-wrap;min-height:0;font-size:1.25cqw}
+.k{color:var(--vi)}.s{color:var(--cy)}.c{color:#5d6786}.nm{color:var(--am)}.f{color:#8fb9ff}.ok{color:var(--cy)}.pr{color:var(--am)}.dim{color:var(--t2)}
+.cur{display:inline-block;width:.6em;height:1.1em;background:var(--cy);vertical-align:text-bottom;opacity:.85}
+#lt{position:absolute;left:5%;bottom:3.2%;font:600 1.8cqw system-ui;letter-spacing:-.01em;opacity:0;transition:opacity .5s;pointer-events:none}
+#lt::before{content:"";display:inline-block;width:.8cqw;height:.8cqw;background:var(--cy);margin-right:1cqw;border-radius:50%}
+#end{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#06080F;opacity:0;pointer-events:none;text-align:center;transition:opacity 1s}
+#end svg{width:11cqw;filter:drop-shadow(0 0 2cqw rgba(114,245,229,.35))}
+#end h2{margin:1.6cqw 0 .4cqw;font-size:5cqw;letter-spacing:-.04em}#end p{margin:0;color:var(--t2);font-size:2cqw}
+#end code{margin-top:2.6cqw;color:var(--cy);font:1.8cqw ui-monospace,monospace;border:1px solid var(--ln);padding:.8cqw 1.6cqw;border-radius:.4cqw}
+#ui{position:absolute;left:0;right:0;bottom:0;display:flex;gap:10px;align-items:center;padding:8px 12px;background:linear-gradient(transparent,rgba(0,0,0,.75));z-index:5}
+#ui button{background:none;border:1px solid #3a4260;color:var(--tx);border-radius:4px;padding:6px 12px;cursor:pointer;font:inherit;font-size:14px}
+#ui button:focus-visible,#ui input:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+#ui input{flex:1;accent-color:#72F5E5}#tm{font:13px ui-monospace,monospace;color:var(--t2);min-width:5.5em;text-align:right}
+</style></head><body>
+<div id="wrap" role="region" aria-label="mcp-agent-kit screencast, about 37 seconds, silent. A developer scaffolds an agent, validates it, adds a tool, and validates again.">
+<div id="ide" aria-hidden="true"><div id="bar"><i></i><i></i><i></i><span>my_agent — mcp-agent-kit</span></div><div id="side"></div>
+<div id="main"><div id="ed"><div id="tab"></div><div id="code"></div></div><div id="term"></div></div></div>
+<div id="lt"></div>
+<div id="end"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="M100 20l66 38v84l-66 38-66-38V58z" fill="rgba(114,245,229,.06)" stroke="#72F5E5" stroke-width="3"/><path d="M100 20v160M34 58l132 84M166 58L34 142" stroke="#A78BFA" stroke-width="1.6"/><circle cx="100" cy="100" r="13" fill="#FFBE76"/></svg><h2>mcp-agent-kit</h2><p>Build the server. Ship the agent.</p><code>github.com/abhishek09827/mcp-agent-kit</code></div>
+<div id="ui"><button id="pp">Pause</button><button id="rp">Replay</button><input id="sc" type="range" min="0" max="370" value="0" aria-label="Timeline"><span id="tm">0.0 / 37.0s</span></div>
+</div>
+<script>
+(function(){
+var T=37;function cl(x){return Math.max(0,Math.min(1,x))}function sm(x){return x*x*(3-2*x)}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function hl(s){return esc(s).replace(/(#.*$)|("[^"]*")|\b(def|from|import|as|return|True|False|None)\b|\b(\d+)\b|\b([A-Za-z_]\w*)(?=\()/g,function(m,c,st,kw,n,f){return c?'<span class="c">'+c+'</span>':st?'<span class="s">'+st+'</span>':kw?'<span class="k">'+kw+'</span>':n?'<span class="nm">'+n+'</span>':'<span class="f">'+f+'</span>'})}
+/* terminal script (outputs are real captured output of the repo's CLI and validate.py) */
+var TM=[];function cmd(at,p,t,cps){TM.push({k:'c',at:at,p:p,t:t,cps:cps})}function out(at,t,c){TM.push({k:'o',at:at,t:t,c:c||''})}
+var DEV='~/dev $ ',AG='my_agent $ ',VAL=['✓ MCP server/discover responds correctly','✓ tools/list is deterministically ordered','✓ all tool schemas pass design rules','✓ A2A agent.json is valid','✓ SKILL.md portable core is valid','✓ dual-era client probe works against local server'];
+cmd(.6,DEV,'python -m mcp_agent_kit my_agent --desc "Use when computing text statistics. Do not use for editing documents."',34);
+out(4.2,"Scaffolding MCP agent 'my_agent' into 'my_agent'...",'dim');out(4.7,"✓ Agent 'my_agent' successfully created in 'my_agent'.",'ok');out(5.1,'Next steps:','dim');out(5.25,'  cd my_agent','dim');out(5.4,'  python validate.py','dim');
+cmd(8.9,DEV,'cd my_agent',14);cmd(10.1,AG,'python validate.py',16);VAL.forEach(function(v,i){out(11.6+i*.4,v,'ok')});
+cmd(28.3,AG,'python validate.py',16);VAL.forEach(function(v,i){out(29.8+i*.35,v,'ok')});
+/* tree */
+var TR=[[6.4,0,'my_agent/'],[6.6,1,'SKILL.md'],[6.75,1,'README.md'],[6.9,1,'server.py'],[7.05,1,'validate.py'],[7.2,1,'client_test.py'],[7.35,1,'a2a/'],[7.5,2,'agent.json'],[7.65,2,'server.py'],[7.8,1,'tools/'],[7.95,2,'__init__.py'],[8.1,2,'example.py'],[16.2,2,'word_count.py']];
+/* editor files */
+var F={};function stat(file,at,txt){F[file]=F[file]||[];txt.split('\n').forEach(function(l){F[file].push({t:l,at:at,d:0})})}
+function typ(file,start,cps,txt){F[file]=F[file]||[];var n=0;txt.split('\n').forEach(function(l){F[file].push({t:l,at:start+n/cps,d:Math.max(.05,l.length/cps),n:1});n+=l.length+1})}
+stat('tools/example.py',14,'TOOL_DEFINITION = {\n    "name": "calculate_metrics",\n    "description": "Use when analyzing numerical series or computing aggregate metrics. Do not use for unstructured text parsing.",\n    "inputSchema": {\n        "type": "object",\n        "properties": {\n            "metric_type": {"type": "string", "enum": ["mean", "sum", "max", "min"]},\n            "values": {"type": "array", "items": {"type": "number"}},\n        },\n        "required": ["values"],\n    },\n    "annotations": {"readOnlyHint": True, "destructiveHint": False},\n    "handler": calculate_metrics,\n}');
+typ('tools/word_count.py',16.6,120,'from typing import Any, Dict\n\n\ndef word_count(arguments: Dict[str, Any]) -> Dict[str, Any]:\n    text = arguments.get("text", "")\n    return {"words": len(text.split())}\n\n\nTOOL_DEFINITION = {\n    "name": "word_count",\n    "description": "Use when counting words in a piece of text. Do not use for editing or rewriting text.",\n    "inputSchema": {\n        "type": "object",\n        "properties": {"text": {"type": "string", "description": "Text to count words in"}},\n        "required": ["text"],\n    },\n    "annotations": {"readOnlyHint": True, "destructiveHint": False},\n    "handler": word_count,\n}');
+stat('server.py',22.6,'from tools.example import TOOL_DEFINITION');typ('server.py',23,70,'from tools.word_count import TOOL_DEFINITION as WORD_COUNT');
+stat('server.py',22.6,'\n\ndef create_server(legacy_mode: bool = False) -> MCPServer:\n    # ⋯ MCPServer setup and example tool registration');
+typ('server.py',24.4,150,'    srv.tools.register(\n        name=WORD_COUNT["name"],\n        description=WORD_COUNT["description"],\n        input_schema=WORD_COUNT["inputSchema"],\n        annotations=WORD_COUNT["annotations"],\n        handler=WORD_COUNT["handler"],\n    )');
+stat('server.py',22.6,'\n    return srv');
+var SCH=[[14,'tools/example.py'],[16.2,'tools/word_count.py'],[22.6,'server.py']];
+/* captions and camera */
+var LT=[[.6,6.2,'Scaffold an agent with one command'],[8.9,14,'Validate the generated project'],[14.2,28,'Add your own tool, register it in server.py'],[28.3,32.8,'Validate again']];
+var CAM=[[0,1,50,50],[.3,1.55,50,100],[6,1.55,50,100],[6.6,1.5,0,35],[8.6,1.55,50,100],[13.8,1.5,70,0],[22.4,1.5,60,18],[28,1.55,50,100],[32.6,1,50,50],[37,1,50,50]];
+var ide=document.getElementById('ide'),side=document.getElementById('side'),code=document.getElementById('code'),tab=document.getElementById('tab'),term=document.getElementById('term'),lt=document.getElementById('lt'),end=document.getElementById('end');
+side.innerHTML=TR.map(function(r){return '<div style="padding-left:'+(1+r[1]*1.1)+'cqw">'+(r[2].slice(-1)=='/'?'▾ ':'')+esc(r[2])+'</div>'}).join('');var sd=side.children;
+function cam(t){for(var i=0;i<CAM.length-1;i++){var a=CAM[i],b=CAM[i+1];if(t<=b[0]){var x=sm(cl((t-a[0])/(b[0]-a[0])));return[a[1]+(b[1]-a[1])*x,a[2]+(b[2]-a[2])*x,a[3]+(b[3]-a[3])*x]}}return[1,50,50]}
+function render(t){
+ var c=cam(t);ide.style.transformOrigin=c[1]+'% '+c[2]+'%';ide.style.transform='scale('+c[0]+')';
+ /* terminal */
+ var h=[],last=null;TM.forEach(function(r){if(t<r.at)return;if(r.k=='c'){var n=Math.floor((t-r.at)*r.cps),done=n>=r.t.length;var line='<span class="pr">'+r.p+'</span>'+esc(r.t.slice(0,n));h.push(line+(done?'':'<span class="cur"></span>'));last=done?r:null}else h.push('<span class="'+r.c+'">'+esc(r.t)+'</span>')});
+ var typing=TM.some(function(r){return r.k=='c'&&t>=r.at&&(t-r.at)*r.cps<r.t.length});var lastc=TM.filter(function(r){return r.k=='c'&&t>=r.at}).pop();
+ var lr=TM.filter(function(r){return t>=r.at}).pop(),lastIsCmd=lr&&lr.k=='c'&&!typing&&lr.t=='cd my_agent';
+ term.innerHTML=h.slice(-12).join('\n')+(lastIsCmd||!h.length?'<span class="pr">'+(h.length?AG:DEV)+'</span><span class="cur"></span>':'');
+ /* tree */
+ var act='';SCH.forEach(function(s){if(t>=s[0])act=s[1]});
+ var AI={'tools/example.py':11,'tools/word_count.py':12,'server.py':3}[act];TR.forEach(function(r,i){sd[i].className=(t>=r[0]?'on':'')+(act&&i==AI?' act':'')});
+ /* editor */
+ if(!act){tab.textContent='';code.innerHTML=''}else{tab.textContent=act;var L=F[act]||[],html='';L.forEach(function(l,i){if(t<l.at)return;var txt=l.t,typing=false;if(l.d){var x=cl((t-l.at)/l.d);txt=l.t.slice(0,Math.floor(x*l.t.length));typing=x<1}html+='<div class="l'+(l.n?' n':'')+'"><b>'+(i+1)+'</b><span>'+hl(txt)+(typing?'<span class="cur"></span>':'')+'</span></div>'});code.innerHTML=html}
+ /* lower third + end */
+ var cap='';LT.forEach(function(l){if(t>=l[0]&&t<l[1])cap=l[2]});lt.textContent=cap;lt.style.opacity=cap?1:0;end.style.opacity=t>33.2?1:0;
+}
+var t=0,play=true,last=performance.now(),sc=document.getElementById('sc'),tm=document.getElementById('tm'),pp=document.getElementById('pp');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){play=false;pp.textContent='Play';t=0}
+function tick(n){var dt=(n-last)/1000;last=n;if(play){t+=dt;if(t>=T){t=T;play=false;pp.textContent='Play'}}render(t);sc.value=t*10;tm.textContent=t.toFixed(1)+' / '+T+'.0s';requestAnimationFrame(tick)}
+pp.onclick=function(){if(t>=T)t=0;play=!play;pp.textContent=play?'Pause':'Play'};
+document.getElementById('rp').onclick=function(){t=0;play=true;pp.textContent='Pause'};
+sc.oninput=function(){t=sc.value/10;play=false;pp.textContent='Play'};
+requestAnimationFrame(tick);
+})();
+</script></body></html>
+-agent-kit — developer screencast.html…]()
 
-## mcp-agent-kit
-
-Build the server. Ship the agent.
-
-`github.com/abhishek09827/mcp-agent-kit`
-
-0.0 / 37.0s
-[mcp-agent-kit — developer screencast.md](https://github.com/user-attachments/files/33306308/mcp-agent-kit.developer.screencast.md)
 
 
 ## Quick Start (5 Lines)
