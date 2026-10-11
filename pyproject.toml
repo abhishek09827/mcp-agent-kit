@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-agent-kit"
+version = "0.1.0"
+description = "Production-ready MCP server scaffold with stateless MCP 2026-07-28, A2A Agent Card, and Agent Skill packaging"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Abhishek Kaushik", email = "abhishekk09827@gmail.com"}
+]
+keywords = ["mcp", "model-context-protocol", "agent", "a2a", "skill", "scaffold"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.optional-dependencies]
+a2a = [
+    "flask>=3.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[project.scripts]
+create-mcp-agent = "mcp_agent_kit.cli:main"
+mcp-agent-kit = "mcp_agent_kit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mcp_agent_kit*", "tools*"]
+
+[tool.setuptools.package-data]
+mcp_agent_kit = ["template/**/*", "template/**/.*"]
