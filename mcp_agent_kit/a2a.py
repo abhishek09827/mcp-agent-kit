@@ -171,9 +171,10 @@ class TaskManager:
         task.status = "working"
         task.updated_at = time.time()
 
-        # Check if any message part requests input_required
-        for msg in task.messages:
-            parts = msg.get("parts", [])
+        # Check if the latest message part requests input_required
+        if task.messages:
+            latest_msg = task.messages[-1]
+            parts = latest_msg.get("parts", [])
             for p in parts:
                 text_content = p.get("text", "")
                 if "require_input" in text_content or p.get("require_input"):
